@@ -2,12 +2,8 @@ import * as React from 'react';
 
 import { Text } from './Header';
 
-interface Text {
-	text: string
-}
-
-export const Footer = ({text}: Text) => (
-	<MyText>{text}</MyText>
+export const Footer = () => (
+	<MyText>If you don't like this page, it's <a href='https://www.applifting.cz/'>Applifting's</a> fault.</MyText>
 );
 
 const MyText = Text.extend`

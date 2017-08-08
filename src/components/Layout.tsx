@@ -46,7 +46,7 @@ export const Layout = ({currentRanking, handleClick}: Props) => {
               <Table currentRanking={currentRanking} top={7}/>
             </Body>)} }/>
       </Switch>
-      <Footer text="If you don't like this page, it's Applifting's fault."/>
+      <Footer />
 		</Div>
 	)
 }
