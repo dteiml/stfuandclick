@@ -116,7 +116,9 @@ const E2 = E.extend`
 
 const E3 = E.extend`
 	width: 20%;
-	text-align: left;
+	text-align: right;
+	position: relative;
+	right: 13px;
 `;
 
 const H1 = E1.extend`

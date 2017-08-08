@@ -15,7 +15,7 @@ export const Header = () => {
 		)
 	}
 	else {
-		const url = location.href.substr(7);
+		const url = location.href.split('//')[1];
 		const handleClick = (evt: any) => {
 			evt.target.select();
 		};
@@ -66,8 +66,8 @@ const URL = styled.input`
   font-family: Roboto, sans-serif;
   font-style: italic;
   font-size: 12px;
-  padding: 5px 8px;
+  padding: 3px 8px;
   margin: 0 5px;
   line-height: 1.6;
-  width: 110px;
+  width: 150px;
 `;
