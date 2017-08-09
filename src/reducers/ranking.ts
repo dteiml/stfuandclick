@@ -16,21 +16,34 @@ const ranking = (state: Ranking = {myTeam: {myClicks: -1, clicks: -1, name: ''},
         name = action.name;
       }
       const teamArr: Team[] = state.ranking.filter(team => team.team === name);
-      let newTeam: MyTeam = {};
+
+      let currentRanking: Team[];
+
+      let myTeam: MyTeam = {};
       if ( teamArr[0] ) {
-        newTeam.clicks = teamArr[0].clicks;
+        myTeam.clicks = teamArr[0].clicks;
       } else {
-        newTeam.clicks = 0;
+        myTeam.clicks = 0;
       }
-      newTeam.name = name;
-      newTeam.myClicks = 0;
-      return Object.assign({}, state, {myTeam: newTeam});
+      myTeam.name = name;
+      myTeam.myClicks = 0;
+      if (teamArr.length === 0) {
+        currentRanking = state.ranking.slice();
+        const newTeam: Team = {
+          order: currentRanking.length,
+          team: name,
+          clicks: 0
+        }
+        currentRanking.push(newTeam);
+        return Object.assign({}, state, {ranking: currentRanking}, {myTeam})
+      }
+      else return Object.assign({}, state, {myTeam});
     }
     case CHANGE_LOCAL: {
-      let newTeam: MyTeam = Object.assign({}, state.myTeam);
-      newTeam.clicks += action.int;
-      newTeam.myClicks += action.int;
-      return Object.assign({}, state, {myTeam: newTeam});
+      let myTeam: MyTeam = Object.assign({}, state.myTeam);
+      myTeam.clicks += action.int;
+      myTeam.myClicks += action.int;
+      return Object.assign({}, state, {myTeam});
     }
     case INCREMENT_GLOBAL: {
       const teamArr: Team[] = state.ranking.filter(team => team.team === state.myTeam.name);

@@ -41,8 +41,6 @@ export class Table extends React.Component<Props> {
 			const length = currentRanking.length;
 
 			let index = this.findTeam(currentRanking, teamName);
-			//yes is true in all cases except when a new team has been created
-			const yes = index !== null;
 
 			currentRanking.forEach((team: Team, i: number) => {
 				if (team.team === teamName) {
@@ -56,10 +54,9 @@ export class Table extends React.Component<Props> {
 				}
 
 				// make sure table displays correct rows
-				else if ((!yes && i > length - 7)
-				 || (yes && index! < top - 4 && i < top)
-				 || (yes && index! > length - 4 && i > length - top - 1)
-				 || (yes && i > index! - 4 && i < index! + 4)) {
+				else if ((index! < top - 4 && i < top)
+				 || (index! > length - 4 && i > length - top - 1)
+				 || (i > index! - 4 && i < index! + 4)) {
 					myRanking.push(
 						<Row>
 							<E1>{team.order}</E1>
