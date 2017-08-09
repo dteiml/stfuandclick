@@ -66,16 +66,6 @@ export class Table extends React.Component<Props> {
 					)
 				}
 			})
-
-			if (index === null) {
-				myRanking.push(
-					<RowMyTeam>
-						<E1>{length + 1}</E1>
-						<E2>{teamName}</E2>
-						<E3>0</E3> 
-					</RowMyTeam>	
-				)
-			}
 		} 
 
 		return myRanking;
