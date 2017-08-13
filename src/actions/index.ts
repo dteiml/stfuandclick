@@ -27,7 +27,6 @@ export const load = (url: string, name: string) => {
       })
       .then((response) => response.json())
       .then((response) => dispatch(loaded(response)))
-      .then((response) => dispatch(setTeam(name, true)))
       .catch(() => dispatch(loadingFailed()));
     };
 }

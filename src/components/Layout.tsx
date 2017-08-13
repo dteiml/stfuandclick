@@ -6,14 +6,11 @@ import { grey } from '../util/colors';
 import { Route, Switch } from 'react-router-dom';
 import { Header } from './Header';
 import { Body } from './Body';    
-
 import { Banner } from './Banner';
 import { Footer } from './Footer';
-
 import { TeamInput } from './TeamInput';
 import { Ribbon } from './Ribbon';
 import { Table } from './Table'; 
-
 import { Click } from './Click';
 import ClicksCont from '../containers/ClicksCont';
 

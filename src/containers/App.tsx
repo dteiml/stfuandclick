@@ -18,7 +18,7 @@ interface Props {
   setString: (bool: boolean) => void
 }
 
-class App extends React.Component<Props> {
+class App extends React.Component<Props, null> {
 
   componentDidMount() {
     //read off team from url: if we are on the homepage, we would pass an empty string, which doens't break

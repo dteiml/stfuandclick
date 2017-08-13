@@ -4,24 +4,34 @@ import { connect } from 'react-redux';
 import { setTeam, setString } from '../actions';
 import { Clicks } from '../components/Clicks';
 
+import { Team } from '../models/Team';
+
 interface Props {
   setTeam: (name: string, decode: boolean) => void,
   setString: (bool: boolean) => void,
   clicks: number,
-  myClicks: number
+  myClicks: number,
+  ranking: Team[]
 }
 
-class ClicksCont extends React.Component<Props> {
+class ClicksCont extends React.Component<Props, any> {
   componentDidMount() {
     this.props.setString(true);
 
-    // only call this if we navigated here from the homepage
-    // (team will be set by load action if user used direct link
-    const team = location.pathname.substr(1);
-    if (team !== '') {
+    // if user navigates here from the homepage, the following code will be run
+    if (this.props.ranking.length !== 0 && this.props.myClicks === -1) {
       this.props.setTeam(location.pathname.substr(1), true);
     }
   }
+
+  // else if the user uses a direct link, the following will be called after ranking is loaded
+  // will not be called otherwise (because ranking is already loaded)
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.ranking.length !== 0 && this.props.myClicks === -1) {
+      this.props.setTeam(location.pathname.substr(1), true);
+    }
+  }
+
   render() {
     return <Clicks myClicks={this.props.myClicks} clicks={this.props.clicks}/>;
 	};
@@ -30,6 +40,7 @@ class ClicksCont extends React.Component<Props> {
 const mapStateToProps = (state: any) => {
   const myTeam = state.ranking.myTeam;
   return {
+    ranking: state.ranking.ranking,
     myClicks: myTeam.myClicks,
     clicks: myTeam.clicks
   };
